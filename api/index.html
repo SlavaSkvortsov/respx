@@ -14,7 +14,7 @@
       
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.13">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.14">
     
     
       
@@ -22,7 +22,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.077507d7.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.d3202873.min.css">
       
         <link rel="stylesheet" href="../assets/stylesheets/palette.ff0a5ce4.min.css">
       
@@ -773,12 +773,13 @@ as <code>kwargs</code>.</p>
 <p>To simulate a failing request, <em>like a connection error</em>, pass an <code>Exception</code> instance.
 This is useful when you need to test proper <code>HTTPX</code> error handling in your app.</p>
 <div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">httpx</span>
+<span class="kn">import</span> <span class="nn">httpcore</span>
 <span class="kn">import</span> <span class="nn">respx</span>
 
 
 <span class="nd">@respx</span><span class="o">.</span><span class="n">mock</span>
 <span class="k">def</span> <span class="nf">test_something</span><span class="p">():</span>
-    <span class="n">respx</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://foo.bar/&quot;</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="n">httpx</span><span class="o">.</span><span class="n">ConnectTimeout</span><span class="p">())</span>
+    <span class="n">respx</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://foo.bar/&quot;</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="n">httpcore</span><span class="o">.</span><span class="n">ConnectTimeout</span><span class="p">())</span>
     <span class="n">response</span> <span class="o">=</span> <span class="n">httpx</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://foo.bar/&quot;</span><span class="p">)</span>  <span class="c1"># Will raise</span>
 </code></pre></div>
 
