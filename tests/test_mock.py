@@ -386,3 +386,13 @@ async def test_uds():  # pragma: no cover
             response = await client.get("https://foo.bar/")
             assert request.called is True
             assert response.status_code == 202
+
+
+@respx.mock(base_url='https://foo.bar')
+def test_base_url_with_decorator(respx_mock: MockTransport):
+    respx_mock.get('buzz')
+
+    with httpx.Client() as client:
+        client.get('https://foo.bar/buzz')
+
+    respx_mock.calls.assert_called_once()
